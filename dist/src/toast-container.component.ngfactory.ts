@@ -5,7 +5,7 @@
  */
  /* tslint:disable */
 
-import * as import0 from './toast-container.component';
+import * as import0 from '../../src/toast-container.component';
 import * as import1 from '@angular/core/src/linker/view';
 import * as import2 from '@angular/core/src/render/api';
 import * as import3 from '@angular/core/src/linker/view_utils';
@@ -14,11 +14,11 @@ import * as import5 from '@angular/core/src/linker/view_type';
 import * as import6 from '@angular/core/src/change_detection/change_detection';
 import * as import7 from '@angular/core/src/linker/component_factory';
 import * as import8 from '@angular/platform-browser/src/security/dom_sanitization_service';
-import * as import9 from './toast-options';
+import * as import9 from '../../src/toast-options';
 import * as import10 from '@angular/core/src/animation/animation_transition';
-import * as import11 from '@angular/core/src/animation/animation_style_util';
-import * as import12 from '@angular/core/src/animation/animation_sequence_player';
-import * as import13 from '@angular/core/src/animation/animation_styles';
+import * as import11 from '@angular/core/src/animation/animation_sequence_player';
+import * as import12 from '@angular/core/src/animation/animation_styles';
+import * as import13 from '@angular/core/src/animation/animation_style_util';
 import * as import14 from '@angular/core/src/animation/animation_keyframe';
 import * as import15 from '@angular/core/src/animation/animation_player';
 import * as import16 from '@angular/core/src/linker/view_container';
@@ -118,7 +118,7 @@ var ToastContainer_inOut_states:any = {
 }
 ;
 function ToastContainer_inOut_factory(view:import1.AppView<any>,element:any,currentState:any,nextState:any):import10.AnimationTransition {
-  view.animationContext.cancelActiveAnimation(element,'inOut',(nextState == 'void'));
+  var previousPlayers:any = view.animationContext.getAnimationPlayers(element,'inOut',(nextState == 'void'));
   var collectedStyles:any = {};
   var player:any = (null as any);
   var totalTime:any = 0;
@@ -127,9 +127,8 @@ function ToastContainer_inOut_factory(view:import1.AppView<any>,element:any,curr
   if ((startStateStyles == (null as any))) { (startStateStyles = defaultStateStyles); }
   var endStateStyles:any = ToastContainer_inOut_states[nextState];
   if ((endStateStyles == (null as any))) { (endStateStyles = defaultStateStyles); }
-  import11.renderStyles(element,view.renderer,import11.clearStyles(startStateStyles));
   if (((player == (null as any)) && ((currentState == 'void') && (nextState == 'flyRight')))) {
-      player = new import12.AnimationSequencePlayer([view.renderer.animate(element,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[
+      player = new import11.AnimationSequencePlayer([view.renderer.animate(element,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[
         startStateStyles,
         {
           opacity: '0',
@@ -137,31 +136,31 @@ function ToastContainer_inOut_factory(view:import1.AppView<any>,element:any,curr
         }
 
       ]
-      )),import11.balanceAnimationKeyframes(collectedStyles,endStateStyles,[
-        new import14.AnimationKeyframe(0,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{}]))),
-        new import14.AnimationKeyframe(1,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{}])))
+      )),import13.balanceAnimationKeyframes(collectedStyles,endStateStyles,[
+        new import14.AnimationKeyframe(0,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{}]))),
+        new import14.AnimationKeyframe(1,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{}])))
       ]
-    ),200,0,'ease-in')]);
+    ),200,0,'ease-in',previousPlayers)]);
     totalTime = 200;
   }
   if (((player == (null as any)) && ((currentState == 'flyRight') && (nextState == 'void')))) {
-      player = new import12.AnimationSequencePlayer([view.renderer.animate(element,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
-          new import14.AnimationKeyframe(0,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{
+      player = new import11.AnimationSequencePlayer([view.renderer.animate(element,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
+          new import14.AnimationKeyframe(0,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{
             opacity: 'true',
             transform: 'true'
           }
         ]))),
-          new import14.AnimationKeyframe(1,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{
+          new import14.AnimationKeyframe(1,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{
             opacity: '0',
             transform: 'translateX(100%)'
           }
         ])))
       ]
-    ,200,0,(null as any))]);
+    ,200,0,(null as any),previousPlayers)]);
     totalTime = 200;
   }
   if (((player == (null as any)) && ((currentState == 'void') && (nextState == 'flyLeft')))) {
-      player = new import12.AnimationSequencePlayer([view.renderer.animate(element,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[
+      player = new import11.AnimationSequencePlayer([view.renderer.animate(element,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[
         startStateStyles,
         {
           opacity: '0',
@@ -169,51 +168,51 @@ function ToastContainer_inOut_factory(view:import1.AppView<any>,element:any,curr
         }
 
       ]
-      )),import11.balanceAnimationKeyframes(collectedStyles,endStateStyles,[
-        new import14.AnimationKeyframe(0,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{}]))),
-        new import14.AnimationKeyframe(1,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{}])))
+      )),import13.balanceAnimationKeyframes(collectedStyles,endStateStyles,[
+        new import14.AnimationKeyframe(0,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{}]))),
+        new import14.AnimationKeyframe(1,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{}])))
       ]
-    ),200,0,'ease-in')]);
+    ),200,0,'ease-in',previousPlayers)]);
     totalTime = 200;
   }
   if (((player == (null as any)) && ((currentState == 'flyLeft') && (nextState == 'void')))) {
-      player = new import12.AnimationSequencePlayer([view.renderer.animate(element,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
-          new import14.AnimationKeyframe(0,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{
+      player = new import11.AnimationSequencePlayer([view.renderer.animate(element,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
+          new import14.AnimationKeyframe(0,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{
             opacity: 'true',
             transform: 'true'
           }
         ]))),
-          new import14.AnimationKeyframe(1,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{
+          new import14.AnimationKeyframe(1,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{
             opacity: '0',
             transform: 'translateX(-100%)'
           }
         ])))
       ]
-    ,200,0,(null as any))]);
+    ,200,0,(null as any),previousPlayers)]);
     totalTime = 200;
   }
   if (((player == (null as any)) && ((currentState == 'void') && (nextState == 'fade')))) {
-      player = new import12.AnimationSequencePlayer([view.renderer.animate(element,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[
+      player = new import11.AnimationSequencePlayer([view.renderer.animate(element,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[
         startStateStyles,
         {opacity: '0'}
       ]
-      )),import11.balanceAnimationKeyframes(collectedStyles,endStateStyles,[
-        new import14.AnimationKeyframe(0,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{}]))),
-        new import14.AnimationKeyframe(1,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{}])))
+      )),import13.balanceAnimationKeyframes(collectedStyles,endStateStyles,[
+        new import14.AnimationKeyframe(0,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{}]))),
+        new import14.AnimationKeyframe(1,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{}])))
       ]
-    ),300,0,'ease-in')]);
+    ),300,0,'ease-in',previousPlayers)]);
     totalTime = 300;
   }
   if (((player == (null as any)) && ((currentState == 'fade') && (nextState == 'void')))) {
-      player = new import12.AnimationSequencePlayer([view.renderer.animate(element,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
-        new import14.AnimationKeyframe(0,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{opacity: 'true'}]))),
-        new import14.AnimationKeyframe(1,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{opacity: '0'}])))
+      player = new import11.AnimationSequencePlayer([view.renderer.animate(element,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
+        new import14.AnimationKeyframe(0,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{opacity: 'true'}]))),
+        new import14.AnimationKeyframe(1,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{opacity: '0'}])))
       ]
-    ,300,0,(null as any))]);
+    ,300,0,(null as any),previousPlayers)]);
     totalTime = 300;
   }
   if (((player == (null as any)) && ((currentState == 'void') && (nextState == 'slideDown')))) {
-      player = new import12.AnimationSequencePlayer([view.renderer.animate(element,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[
+      player = new import11.AnimationSequencePlayer([view.renderer.animate(element,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[
         startStateStyles,
         {
           opacity: '0',
@@ -221,31 +220,31 @@ function ToastContainer_inOut_factory(view:import1.AppView<any>,element:any,curr
         }
 
       ]
-      )),import11.balanceAnimationKeyframes(collectedStyles,endStateStyles,[
-        new import14.AnimationKeyframe(0,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{}]))),
-        new import14.AnimationKeyframe(1,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{}])))
+      )),import13.balanceAnimationKeyframes(collectedStyles,endStateStyles,[
+        new import14.AnimationKeyframe(0,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{}]))),
+        new import14.AnimationKeyframe(1,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{}])))
       ]
-    ),300,0,'ease-in')]);
+    ),300,0,'ease-in',previousPlayers)]);
     totalTime = 300;
   }
   if (((player == (null as any)) && ((currentState == 'slideDown') && (nextState == 'void')))) {
-      player = new import12.AnimationSequencePlayer([view.renderer.animate(element,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
-          new import14.AnimationKeyframe(0,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{
+      player = new import11.AnimationSequencePlayer([view.renderer.animate(element,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
+          new import14.AnimationKeyframe(0,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{
             opacity: 'true',
             transform: 'true'
           }
         ]))),
-          new import14.AnimationKeyframe(1,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{
+          new import14.AnimationKeyframe(1,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{
             opacity: '0',
             transform: 'translateY(-200%)'
           }
         ])))
       ]
-    ,300,0,(null as any))]);
+    ,300,0,(null as any),previousPlayers)]);
     totalTime = 300;
   }
   if (((player == (null as any)) && ((currentState == 'void') && (nextState == 'slideUp')))) {
-      player = new import12.AnimationSequencePlayer([view.renderer.animate(element,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[
+      player = new import11.AnimationSequencePlayer([view.renderer.animate(element,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[
         startStateStyles,
         {
           opacity: '0',
@@ -253,34 +252,36 @@ function ToastContainer_inOut_factory(view:import1.AppView<any>,element:any,curr
         }
 
       ]
-      )),import11.balanceAnimationKeyframes(collectedStyles,endStateStyles,[
-        new import14.AnimationKeyframe(0,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{}]))),
-        new import14.AnimationKeyframe(1,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{}])))
+      )),import13.balanceAnimationKeyframes(collectedStyles,endStateStyles,[
+        new import14.AnimationKeyframe(0,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{}]))),
+        new import14.AnimationKeyframe(1,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{}])))
       ]
-    ),300,0,'ease-in')]);
+    ),300,0,'ease-in',previousPlayers)]);
     totalTime = 300;
   }
   if (((player == (null as any)) && ((currentState == 'slideUp') && (nextState == 'void')))) {
-      player = new import12.AnimationSequencePlayer([view.renderer.animate(element,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
-          new import14.AnimationKeyframe(0,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{
+      player = new import11.AnimationSequencePlayer([view.renderer.animate(element,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[startStateStyles])),[
+          new import14.AnimationKeyframe(0,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{
             opacity: 'true',
             transform: 'true'
           }
         ]))),
-          new import14.AnimationKeyframe(1,new import13.AnimationStyles(import11.collectAndResolveStyles(collectedStyles,[{
+          new import14.AnimationKeyframe(1,new import12.AnimationStyles(import13.collectAndResolveStyles(collectedStyles,[{
             opacity: '0',
             transform: 'translateY(200%)'
           }
         ])))
       ]
-    ,300,0,(null as any))]);
+    ,300,0,(null as any),previousPlayers)]);
     totalTime = 300;
   }
   if ((player == (null as any))) { (player = new import15.NoOpAnimationPlayer()); }
   player.onDone(():void => {
     player.destroy();
-    import11.renderStyles(element,view.renderer,import11.prepareFinalAnimationStyles(startStateStyles,endStateStyles));
+    import13.renderStyles(element,view.renderer,import13.prepareFinalAnimationStyles(startStateStyles,endStateStyles));
   });
+  new import11.AnimationSequencePlayer(previousPlayers).destroy();
+  import13.renderStyles(element,view.renderer,import13.clearStyles(startStateStyles));
   view.animationContext.queueAnimation(element,'inOut',player);
   return new import10.AnimationTransition(player,currentState,nextState,totalTime);
 }

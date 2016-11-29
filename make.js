@@ -33,7 +33,7 @@ async.waterfall([
 
 function getSystemJsBundleConfig(cb) {
   const config = {
-    baseURL: '..',
+    baseURL: './',
     transpiler: 'typescript',
     typescriptOptions: {
       module: 'cjs'
@@ -75,7 +75,7 @@ function buildSystemJs(options) {
     console.log('Bundling system.js file:', fileName, options);
     builder.config(config);
     return builder
-      .bundle([name, name].join('/'), dest, options)
+      .bundle('dist/' + name, dest, options)
       .then(() => cb())
       .catch(cb);
   };

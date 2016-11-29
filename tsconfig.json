@@ -11,10 +11,14 @@
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
     "listFiles": false,
-    "noLib": false
+    "noLib": false,
+    "outDir": "dist"
   },
   "exclude": [
     "node_modules",
     "demo"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "genDir": "dist"
+  }
 }
